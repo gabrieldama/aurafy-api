@@ -32,22 +32,22 @@ src/main/java/com/aurafy
 | GET    | `/api/playlists`      | Lista todas as playlists com músicas   |
 | GET    | `/api/playlists/{id}` | Busca uma playlist pelo id (404 se não existir) |
 
-Exemplo de resposta de `GET /api/playlists/1`:
+Exemplo de resposta de `GET /api/playlists/3`:
 
 ```json
 {
-  "id": 1,
-  "nome": "Rock Clássico",
-  "descricao": "Os maiores hinos do rock",
-  "capaUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVYDwQ9SrYjO5kB5OIl4qK7hps3STXQ1zuC4WRGoYAwcL9ZiBGDfU4jrKj&s=10",
+  "id": 3,
+  "nome": "Rap Clássico",
+  "descricao": "O melhor do rap para ouvir no volume máximo",
+  "capaUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/c9/02/cd/c902cdef-e179-5b70-8142-112a2abe7f27/22UMGIM49875.rgb.jpg/600x600bb.jpg",
   "musicas": [
     {
-      "id": 2,
-      "titulo": "Bohemian Rhapsody",
-      "artista": "Queen",
-      "album": "A Night at the Opera",
-      "duracaoSegundos": 355,
-      "capaUrl": "https://upload.wikimedia.org/wikipedia/pt/b/bf/A_Night_at_the_Opera_Queen.jpg?utm_source=pt.wikipedia.org&utm_campaign=index&utm_content=original"
+      "id": 10,
+      "titulo": "Lose Yourself",
+      "artista": "Eminem",
+      "album": "8 Mile",
+      "duracaoSegundos": 321,
+      "capaUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/08/23/fc/0823fcd9-cb44-695b-32bf-b3bf51d9f800/00606949351229.rgb.jpg/600x600bb.jpg"
     }
   ]
 }
@@ -55,6 +55,21 @@ Exemplo de resposta de `GET /api/playlists/1`:
 
 Documentação interativa (Swagger UI): `http://localhost:8080/swagger-ui.html`
 
-Na primeira execução, o banco `aurafy` é criado e populado com 6 músicas e 3 playlists de exemplo.
+## Como executar
+
+1. Tenha o Java 21 e o MySQL rodando em `localhost:3306` (usuário `root`, senha `root`; altere em `src/main/resources/application.yaml` se necessário).
+2. Na raiz do projeto, rode:
+
+```bash
+./mvnw spring-boot:run
+```
 
 A API sobe em `http://localhost:8080`.
+
+Na primeira execução, o banco `aurafy` é criado e populado com 11 músicas e 4 playlists de exemplo. A carga só acontece com o banco vazio: para recarregar os dados, apague o banco (`DROP DATABASE aurafy;`) e rode a API de novo.
+
+## Protótipo
+
+O protótipo do app foi feito no Figma: [Aurafy no Figma](https://www.figma.com/design/65uD3qznQ2rNCgoUyu3UK6/Untitled?node-id=0-1&t=6wcefZgdHf5SSKry-1)
+
+O app mobile que consome esta API está no repositório **aurafy-app**.

@@ -13,6 +13,17 @@ import java.util.List;
 @Component
 public class DataLoader implements CommandLineRunner {
 
+    private static final String CAPA_AWAKE = "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/cf/80/5c/cf805cc3-de50-fbcb-91ea-74ff14ab3d44/mzi.xxrsyfim.jpg/600x600bb.jpg";
+    private static final String CAPA_METEORA = "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/13/44/05/134405bd-9e27-a678-8953-b5f724201f95/093624948988.jpg/600x600bb.jpg";
+    private static final String CAPA_HYBRID_THEORY = "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/53/a7/7f/53a77fab-c54c-a57b-8130-248fc12d0c80/093624948995.jpg/600x600bb.jpg";
+    private static final String CAPA_THREE_DAYS_GRACE = "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/bb/b9/93/bbb9937d-8afd-69e2-c8f7-d9a1f20c0497/828765347921.jpg/600x600bb.jpg";
+    private static final String CAPA_HUMAN = "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d2/75/5d/d2755d0a-aeb4-1f8e-900f-1b8027a1e488/886444692298.jpg/600x600bb.jpg";
+    private static final String CAPA_FALLEN = "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/52/49/1a/52491ac9-cef8-4a6a-1a16-a1c01ad44abc/14CMGIM00930.rgb.jpg/600x600bb.jpg";
+    private static final String CAPA_THE_OPEN_DOOR = "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/72/62/7e/72627ec6-772c-7229-6cc4-6ded693506fd/00601501412004.rgb.jpg/600x600bb.jpg";
+    private static final String CAPA_EMINEM_SHOW = "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/c9/02/cd/c902cdef-e179-5b70-8142-112a2abe7f27/22UMGIM49875.rgb.jpg/600x600bb.jpg";
+    private static final String CAPA_8_MILE = "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/08/23/fc/0823fcd9-cb44-695b-32bf-b3bf51d9f800/00606949351229.rgb.jpg/600x600bb.jpg";
+    private static final String CAPA_MOON_SHAPED_POOL = "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/b7/f2/5d/b7f25d91-4320-47c8-146a-6f84d5bc7e78/cover.jpg/600x600bb.jpg";
+
     private final MusicaRepository musicaRepository;
     private final PlaylistRepository playlistRepository;
 
@@ -27,26 +38,31 @@ public class DataLoader implements CommandLineRunner {
             return;
         }
 
-        Musica stairway = musicaRepository.save(new Musica(null, "Stairway to Heaven", "Led Zeppelin", "Led Zeppelin IV", 482,
-                "https://upload.wikimedia.org/wikipedia/en/2/26/Led_Zeppelin_-_Led_Zeppelin_IV.jpg"));
-        Musica bohemian = musicaRepository.save(new Musica(null, "Bohemian Rhapsody", "Queen", "A Night at the Opera", 355,
-                "https://upload.wikimedia.org/wikipedia/pt/b/bf/A_Night_at_the_Opera_Queen.jpg"));
-        Musica billieJean = musicaRepository.save(new Musica(null, "Billie Jean", "Michael Jackson", "Thriller", 294,
-                "https://upload.wikimedia.org/wikipedia/en/5/55/Michael_Jackson_-_Thriller.png"));
-        Musica blindingLights = musicaRepository.save(new Musica(null, "Blinding Lights", "The Weeknd", "After Hours", 200,
-                "https://upload.wikimedia.org/wikipedia/en/c/c1/The_Weeknd_-_After_Hours.png"));
-        Musica garotaDeIpanema = musicaRepository.save(new Musica(null, "Garota de Ipanema", "Tom Jobim", "Getz/Gilberto", 323,
-                "https://upload.wikimedia.org/wikipedia/en/b/b6/Getz_Gilberto.jpg"));
-        Musica aguasDeMarco = musicaRepository.save(new Musica(null, "Águas de Março", "Elis Regina e Tom Jobim", "Elis & Tom", 213,
-                "https://upload.wikimedia.org/wikipedia/pt/0/0e/Elis_%26_Tom.jpg"));
+        Musica monster = salvar("Monster", "Skillet", "Awake", 178, CAPA_AWAKE);
+        Musica numb = salvar("Numb", "Linkin Park", "Meteora", 187, CAPA_METEORA);
+        Musica inTheEnd = salvar("In the End", "Linkin Park", "Hybrid Theory", 216, CAPA_HYBRID_THEORY);
+        Musica iHate = salvar("I Hate Everything About You", "Three Days Grace", "Three Days Grace", 231, CAPA_THREE_DAYS_GRACE);
+        Musica fallenAngel = salvar("Fallen Angel", "Three Days Grace", "Human", 186, CAPA_HUMAN);
+        Musica bringMeToLife = salvar("Bring Me to Life", "Evanescence", "Fallen", 237, CAPA_FALLEN);
+        Musica goingUnder = salvar("Going Under", "Evanescence", "Fallen", 214, CAPA_FALLEN);
+        Musica callMe = salvar("Call Me When You're Sober", "Evanescence", "The Open Door", 214, CAPA_THE_OPEN_DOOR);
+        Musica withoutMe = salvar("Without Me", "Eminem", "The Eminem Show", 290, CAPA_EMINEM_SHOW);
+        Musica loseYourself = salvar("Lose Yourself", "Eminem", "8 Mile", 321, CAPA_8_MILE);
+        Musica burnTheWitch = salvar("Burn the Witch", "Radiohead", "A Moon Shaped Pool", 220, CAPA_MOON_SHAPED_POOL);
 
         playlistRepository.saveAll(List.of(
-                new Playlist(null, "Rock Clássico", "Os maiores hinos do rock",
-                        stairway.getCapaUrl(), new ArrayList<>(List.of(stairway, bohemian))),
-                new Playlist(null, "Pop Hits", "Sucessos que marcaram gerações",
-                        billieJean.getCapaUrl(), new ArrayList<>(List.of(billieJean, blindingLights))),
-                new Playlist(null, "MPB & Bossa Nova", "O melhor da música brasileira",
-                        garotaDeIpanema.getCapaUrl(), new ArrayList<>(List.of(garotaDeIpanema, aguasDeMarco)))
+                new Playlist(null, "Treino Pesado", "Playlist para treino e academia", CAPA_FALLEN,
+                        new ArrayList<>(List.of(fallenAngel, numb, bringMeToLife, goingUnder, monster))),
+                new Playlist(null, "Rock Anos 2000", "Os hinos do rock dos anos 2000", CAPA_HYBRID_THEORY,
+                        new ArrayList<>(List.of(inTheEnd, numb, iHate, callMe))),
+                new Playlist(null, "Rap Clássico", "O melhor do rap para ouvir no volume máximo", CAPA_EMINEM_SHOW,
+                        new ArrayList<>(List.of(withoutMe, loseYourself))),
+                new Playlist(null, "Alternativo", "Para ouvir com calma", CAPA_MOON_SHAPED_POOL,
+                        new ArrayList<>(List.of(burnTheWitch, goingUnder, iHate)))
         ));
+    }
+
+    private Musica salvar(String titulo, String artista, String album, int duracaoSegundos, String capaUrl) {
+        return musicaRepository.save(new Musica(null, titulo, artista, album, duracaoSegundos, capaUrl));
     }
 }
