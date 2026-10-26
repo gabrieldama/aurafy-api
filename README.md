@@ -57,7 +57,12 @@ Documentação interativa (Swagger UI): `http://localhost:8080/swagger-ui.html`
 
 ## Como executar
 
-1. Tenha o Java 21 e o MySQL rodando em `localhost:3306` (usuário `root`, senha `root`; altere em `src/main/resources/application.yaml` se necessário).
+1. Tenha o Java 21 e o MySQL rodando em `localhost:3306` (usuário `root`, senha `root`; altere em `src/main/resources/application.yaml` se necessário). Com o Docker instalado, basta subir o MySQL com:
+
+```bash
+docker compose up -d
+```
+
 2. Na raiz do projeto, rode:
 
 ```bash
@@ -66,7 +71,7 @@ Documentação interativa (Swagger UI): `http://localhost:8080/swagger-ui.html`
 
 A API sobe em `http://localhost:8080`.
 
-Na primeira execução, o banco `aurafy` é criado e populado com 11 músicas e 4 playlists de exemplo. A carga só acontece com o banco vazio: para recarregar os dados, apague o banco (`DROP DATABASE aurafy;`) e rode a API de novo.
+Na primeira execução, o banco `aurafy` é criado e populado com 11 músicas e 4 playlists de exemplo. A carga só acontece com o banco vazio: para recarregar os dados, apague o banco (`DROP DATABASE aurafy;`, ou `docker compose down -v` se estiver usando o Docker) e rode a API de novo.
 
 ## Protótipo
 

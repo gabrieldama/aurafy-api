@@ -1,0 +1,14 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: aurafy-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: aurafy
+    ports:
+      - "3306:3306"
+    volumes:
+      - aurafy-data:/var/lib/mysql
+
+volumes:
+  aurafy-data:
